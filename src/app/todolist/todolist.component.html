@@ -1,0 +1,41 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+
+        <div class="card">
+          <div class="card-header">
+            {{title}}
+          </div>
+          <div class="card-body">
+
+            <!-- Add Task Form -->
+            <form (ngSubmit)="createTodo()">
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" [(ngModel)]="todoInput" name="todoInput" placeholder="Add a new task" required>
+                <button class="btn btn-primary" type="submit">Add Task</button>
+              </div>
+            </form>
+
+            <!-- Task List -->
+            <ul class="list-group mt-5" *ngIf="todos && todos.length > 0">
+              <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let todo of todos">
+                <div class="d-flex">
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="completedTask{{todo.id}}" [checked]="todo.completed === 'completed'" disabled>
+                    <label class="form-check-label" for="completedTask{{todo.id}}">{{todo.title}}</label>
+                  </div>
+                </div>
+                <button class="btn btn-success btn-sm" (click)="markComplete(todo.id)" [hidden]="todo.completed === 'completed'">Mark Complete</button>
+              </li>
+              <!-- Additional tasks can be added here -->
+            </ul>
+            
+            
+            
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
